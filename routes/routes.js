@@ -1,0 +1,11 @@
+var express=require('express')
+var router=express .Router()
+var tokenverify=require('./tokenverify')
+var add_user=require("./add_user")
+var registerandlogin=require("./registerandlogin")
+router.post('/add_user',add_user.add_user)
+router.post('/get_user',tokenverify.tokenverify,add_user.get_user)
+router.post('/edit_user',tokenverify.tokenverify,add_user.edit_user)
+router.post('/register',registerandlogin.register)
+router.post('/login',registerandlogin.login)
+module.exports= router

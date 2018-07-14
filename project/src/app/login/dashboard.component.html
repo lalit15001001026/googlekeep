@@ -1,0 +1,159 @@
+<!-- <p>
+  dashboard works!
+</p> -->
+<style>
+  /* #note:focus
+  {
+    border-color: blueviolet;
+    box-shadow: 0 0 10px 0 darkorange;
+  }
+  #inputNote
+  {
+    height:100px;
+  }
+
+  #notelabel
+  {
+    left: 100px;
+    top: 10px;
+  }
+#note
+  {
+       border: 2px none #aaa;
+       border-radius: 10px 10px;
+       margin: auto;
+       margin-top: 20px;
+       word-break: break-all;
+      height: 100px;
+       padding: 8px;
+       transition: 10ms;
+       widows: 100px; 
+       position: sticky;
+       top: 10px;
+  } */
+  textarea {
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border:none;
+}
+textarea:focus
+{
+   color: black;
+   background-color: #aaa;
+   border-radius: 10px;
+}
+div.notes-container
+{
+  width:400px;
+  height: auto;
+  position: absolute;
+  left: 35%;
+}
+.icon-bar {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+}
+
+.icon-bar a {
+    float: left;
+    width: 20%;
+    text-align: center;
+    padding: 0px 0;
+    transition: all 0.3s ease;
+    color: gainsboro;
+    font-size: 20px;
+}
+.icon-bar a:hover{
+  color:red;
+
+}
+
+.icon-bar a:hover {
+    background-color:lightblue;
+}
+div.icon-bar{
+  width:70%;
+  display: block;
+  position: relative;
+  left:25%;
+  background-color: transparent;
+}
+</style>
+
+<header role="banner" style="background-color:#fb0; display:block; color: black" id="globalheader">
+  <div class="row no-gutters "style="padding:8px; background-color: #fb0; color: black; display:flex; align-items: center">
+    <div class="col-2"style="display:flex; align-items:center; background-color: #fb0;" >
+        <div class="text-center " style="border-radius: 50%;padding: 12px; display: block;">
+          <a role="button" href="#"  (click)="isCollapsed=!isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-control="mainmenu">
+              <i class="fas fa-bars" style="height: 24px; width: 24px;"></i>
+          </a>   
+        </div>
+        <div class="text-center " style="height: 100%;width: 100% ;display: block;">
+          <span class="navbar-brand"> Zen </span>KEEP
+        </div>
+    </div>
+    <div class="col-7 row no-gutters" style="display:flex;align-items: center;">
+      <div class="col">
+        <form class="form-inline">
+           <button class="btn" style="width:8%" type="submit"><i class="fas fa-search"></i></button>
+           <input style="width:85%" type="text" class="form-control" placeholder="Search" >
+           <button class="btn"  style="width:7%" type="reset"><i class="fas fa-times"></i></button>
+        </form>
+      </div>
+      <!-- <div class="col-1">refresh</div>
+      <div class="col-1">view</div> -->
+    </div>
+    <div class="col-3 row no-gutters"style="display:flex; align-items: center ;">
+      <div class="col-8">
+      </div>
+      <div class="col-2"><a href="#" role="button" ><i class="fas fa-bell focusable" style="font-size: 18px;"></i></a></div>
+      <div class="col-2 "><a href="#" role="button" ><i class="fas fa-user-circle" style="font-size: 35px;"></i></a></div>
+    </div>
+  </div>
+ </header>
+ <div class="container-fluid flex row">
+     <!-- <div id="mainmenu" class="col-2 card" style="text-indent: 20px; line-height: 40px" [ngbCollapse]="!isCollapsed"> -->
+        <div id="mainmenu" class="col-2 card" style="text-indent: 20px; line-height: 40px">
+       <h6 clas="dropdown-header">Zen Keep</h6><br>
+       <ul class="list-unstyled sidebar-nav">
+         <li>
+             <a href="#" (click)="setNotes()">Notes</a>
+         </li>
+         <li>
+             <a (click)="setReminder()" href="#">Reminder</a>
+         </li>
+       </ul>
+       <div class="dropdown-divider"></div>
+       <ul class="list-unstyled">
+         <li>
+             <a href="#">Archive</a>
+         </li>
+         <li>
+             <a href="#">Trash</a>
+         </li>
+       </ul>
+       <div class="dropdown-divider"></div>
+       <ul class="list-unstyled">
+         <li>
+             <a href="#">Settings</a>
+         </li>
+         <li>
+           <a href="#">Send feedback</a>
+         </li>
+         <li>
+           <a href="#">Help</a>
+         </li>
+       </ul>
+     </div>
+     <div class="col-10" style="width:100%">
+      <div *ngIf="setNote">
+      <app-note ></app-note>
+      </div>
+      <div *ngIf="remainder">
+        <app-reminder></app-reminder>
+      </div>
+     </div>
+ </div>

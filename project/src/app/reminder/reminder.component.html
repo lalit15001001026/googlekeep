@@ -1,0 +1,125 @@
+
+<head><style>
+  /* #note:focus
+  {
+    border-color: blueviolet;
+    box-shadow: 0 0 10px 0 darkorange;
+  }
+  #inputNote
+  {
+    height:100px;
+  }
+
+  #notelabel
+  {
+    left: 100px;
+    top: 10px;
+  }
+#note
+  {
+       border: 2px none #aaa;
+       border-radius: 10px 10px;
+       margin: auto;
+       margin-top: 20px;
+       word-break: break-all;
+      height: 100px;
+       padding: 8px;
+       transition: 10ms;
+       widows: 100px; 
+       position: sticky;
+       top: 10px;
+  } */
+  textarea {
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border:none;
+}
+textarea:focus
+{
+   color: black;
+   background-color: #aaa;
+   border-radius: 10px;
+}
+div.notes-container
+{
+  width:400px;
+  height: auto;
+  position: absolute;
+  left: 35%;
+}
+.icon-bar {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+}
+
+.icon-bar a {
+    float: left;
+    width: 20%;
+    text-align: center;
+    padding: 0px 0;
+    transition: all 0.3s ease;
+    color: gainsboro;
+    font-size: 20px;
+}
+.icon-bar a:hover{
+  color:red;
+
+}
+
+.icon-bar a:hover {
+    background-color:lightblue;
+}
+div.icon-bar{
+  width:70%;
+  display: block;
+  position: relative;
+  left:25%;
+  background-color: transparent;
+}
+</style>
+</head>
+<div *ngFor="let note of userNotes">
+<div class="notes-container">
+    <p>
+        {{setTitleNote()}}
+      </p>
+<textarea #title id="notes" cols="50" rows="{{rowsWidthTitle}}"item-height="20px" placeholder="title of  a note" (input)="changeNoteTitle($event);sizeIncreaseTitle(event)"  (change)="sizeIncreaseTitle(event)" [ngStyle]="{'color':colorText}">
+{{note.title}}</textarea>
+<textarea id="notes" cols="50" rows="{{rowsWidth}}" item-height="20px" placeholder="make a note" (input)="changeNote($event) ;sizeIncrease(event)" [ngStyle]="{'color':colorText}">
+{{note.note}}
+</textarea>
+
+<!-- <div class="container" (click)="input()">
+  <div contenteditable="true" id="notes" role="textbox" (click)="data=notes.value" =>{{data}}</div>
+  </div> -->
+  <div class="icon-bar">
+      <a  href="#" title="color" (click)="colorChange()"><i class="fa fa-paint-brush"></i></a> 
+      <a href="#" title="add picture" (click)="imageSelector()"><i class="fa fa-picture-o" ></i></a> 
+      <a href="#" title="archive"><i class="fa fa-folder-o"></i></a> 
+      <a href="#" title="reminder"><i class="fa fa-clock-o" (click)="reminderActiveChange()"></i></a>
+      <a href="#" title="delete"><i class="fa fa-trash"></i></a> 
+    </div>
+    <div>
+      <p>
+        the color of the text {{colorText}}
+      </p>
+    <div *ngIf="setImageUrl">
+    <input  #image type="file" id="image" (change)="onFileSelected($event)"/>
+    <img [src]="selectedFile" height="200px" width="200px" (click)="image2()"/>
+    <p>{{selectedFile}}</p>
+    </div>
+    </div>
+    <div *ngIf="reminderActive">
+      <input #reminder type="date"  (change)="onDateSelected($event)">
+      <input #timeReminder type="time" (change)="onTimeSelected($event)">
+      <p>
+        {{date}}
+        {{time}}
+      </p>
+    </div>
+  </div>
+  </div>
+
